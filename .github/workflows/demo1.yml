@@ -1,5 +1,9 @@
 name: Events Demo 1
-on: ...
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch: # Don't forget the colon here in the end
 jobs:
   deploy:
     runs-on: ubuntu-latest
