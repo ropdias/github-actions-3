@@ -1,9 +1,20 @@
 name: Events Demo 1
 on:
   pull_request:
-    types:
+    types: # This is an activity type
       - opened
+    branches: # This is a filter
+      - main
+      - 'dev-*' # This is all branches that starts with 'dev-' but no slashes, like dev-new, dev-this-is-new
+      - 'feat/**' # All branches that starts with feat/ and any other word or slashes like feat/new, feat/new/button
   workflow_dispatch: # Don't forget the colon here in the end
+  push:
+    branches: # This is a filter
+      - main
+      - 'dev-*' # This is all branches that starts with 'dev-' but no slashes, like dev-new, dev-this-is-new
+      - 'feat/**' # All branches that starts with feat/ and any other word or slashes like feat/new, feat/new/button
+    paths-ignore: # This is a filter
+      - '.github/workflows/*' # This will not trigger on push if at least one of the files changed was in the .github/workflows/ folder
 jobs:
   deploy:
     runs-on: ubuntu-latest
